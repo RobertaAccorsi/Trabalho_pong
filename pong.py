@@ -12,14 +12,14 @@ class Config:
 
 
 class Raquete:
-    
+    """Representa uma raquete do jogo"""
 
     def __init__(self, x, y, velocidade=5):
         self.rect = pygame.Rect(x, y, 10, 60)
         self.velocidade = velocidade
 
     def mover(self, direcao):
-  
+        """Move a raquete para cima ou baixo"""
         if direcao == "cima" and self.rect.top > 0:
             self.rect.y -= self.velocidade
         elif direcao == "baixo" and self.rect.bottom < Config.ALTURA:
@@ -30,6 +30,7 @@ class Raquete:
 
 
 class Bola:
+    """Representa a bola"""
 
     def __init__(self):
         self.rect = pygame.Rect(0, 0, 7, 7)
@@ -55,6 +56,7 @@ class Bola:
 
 
 class Game:
+    """Controla o jogo"""
 
     def __init__(self, tela):
         self.tela = tela
@@ -75,6 +77,7 @@ class Game:
                 sys.exit()
 
     def mover_jogador(self):
+        """Entrada do usuário separada"""
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_UP]:
@@ -83,6 +86,7 @@ class Game:
             self.player1.mover("baixo")
 
     def mover_ia(self):
+        """IA simples"""
         if self.player2.rect.centery < self.bola.rect.centery:
             self.player2.mover("baixo")
         else:
@@ -108,6 +112,7 @@ class Game:
         return self.score1 >= 10 or self.score2 >= 10
 
     def atualizar(self):
+        """Agora só coordena"""
         self.bola.mover()
         self.mover_jogador()
         self.mover_ia()
