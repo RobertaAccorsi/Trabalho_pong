@@ -97,6 +97,7 @@ class Game:
             self.player1.mover("baixo")
 
     def mover_ia(self):
+        """IA simples"""
         if self.player2.rect.centery < self.bola.rect.centery:
             self.player2.mover("baixo")
         else:
@@ -142,6 +143,7 @@ class Game:
         return self.score1 >= 2 or self.score2 >= 2
 
     def atualizar(self):
+        """Agora só coordena"""
         self.bola.mover()
         self.mover_jogador()
         self.mover_ia()
